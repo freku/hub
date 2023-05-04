@@ -52,7 +52,7 @@ export default function scriptRouter() {
     const { scriptName } = req.body
     const { outputNamespace } = getNamespaces(scriptName)
 
-    const script = pty.spawn('bash', [`./scripts/${scriptName}`], {
+    const script = pty.spawn('sh', [`/app/scripts/${scriptName}`], {
       name: 'xterm-color',
       rows: 25,
       cols: 80,

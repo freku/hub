@@ -2,11 +2,19 @@ services:
   api:
     image: node-hub
     restart: always
+    working_dir: /app
+    command: sh -c "node src/init/generateAccounts.js && node src/index.js"
     ports: 
       - 3000:3000
     depends_on:
       - redis
       - mongo
+    environment:
+      PORT: 3000
+      SPA_URL: http://localhost:3001
+      JWT_SECRET: P5A2sRvDm8GZDWInBMyEyVSBdzuiI6NYzxTV6U8zm6Q=
+      MONGO_HOST: mongo
+      REDIS_HOST: redis
   redis:
     image: redis:7-alpine
     restart: always

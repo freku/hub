@@ -3,11 +3,11 @@
 FROM node:18-alpine
 ENV NODE_ENV=production
 WORKDIR /app
-COPY ["package.json", "pnpm-lock.yaml", "./"]
+COPY ["package.json", "package-lock.json", "./"]
 
-RUN apk add --update --no-cache make gcc g++ python3 && ln -sf python3 /usr/bin/python
-RUN npm install -g pnpm
-RUN pnpm install --prod
+RUN apk add --update --no-cache make gcc g++ python3
+RUN npm ci --omit=dev
+RUN apk del make gcc g++ python3
 
 COPY . .
 

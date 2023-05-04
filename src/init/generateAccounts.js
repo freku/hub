@@ -5,7 +5,7 @@ import { User } from '../models/index.js'
 dotenv.config()
 
 async function main() {
-  const mongoClient = await mongoose.connect(process.env.MONGO_URI)
+  const mongoClient = await mongoose.connect(`mongodb://${process.env.MONGO_HOST}:27017/hub`)
 
   const accounts = [
     {
